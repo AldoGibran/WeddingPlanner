@@ -1,0 +1,46 @@
+@model successModel
+<h1>Welcome to the Wedding Planner</h1>
+<a asp-action="Logout" asp-controller="Home">Logout</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Wedding</th>
+      <th scope="col">Date</th>
+      <th scope="col">Guest</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+    <tbody>
+      @foreach(var wedding in Model.allW){
+        <tr>
+        <td><a asp-action="ShowWedding" asp-route-WeddingId="@wedding.WeddingId" asp-controller="Home">@wedding.bride & @wedding.groom</a></td>
+        <td>@wedding.date</td>
+        <td>@wedding.RSVP.Count</td>
+        @if(wedding.UserId == Model.userLogged.UserId){
+         <td> <form asp-action="delete" asp-route-WeddingId="@wedding.WeddingId" asp-controller="Home" method="post">
+          <button> Delete Your Dreams </button>
+          </form>
+          </td>
+        }
+        else if(wedding.RSVP.Any(a => a.UserId == Model.userLogged.UserId))
+        {
+            <td>
+            <form asp-action="UnRsvp" asp-route-WeddingId="@wedding.WeddingId" asp-controller="Home" method="post">
+              <button>UnRsvp</button>
+            </form>
+          </td>
+        }
+        else
+        {
+            <td>
+            <form asp-action="Rsvp" asp-route-WeddingId="@wedding.WeddingId" asp-controller="Home" method="post">
+              <button>Rsvp</button>
+            </form>
+          </td>
+        }
+        </tr>
+    }
+  </tbody>
+</table>
+<a asp-action="NewWedding" asp-controller="Home">Add New Wedding</a>

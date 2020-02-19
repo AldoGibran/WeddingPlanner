@@ -1,0 +1,14 @@
+@model Wedding
+<a asp-action="Logout" asp-controller="Home">Logout</a> |
+<a asp-action="success" asp-controller="Home">Home</a>
+
+<h1>@Model.bride and @Model.groom's Wedding</h1>
+<h4>Date: @Model.date</h4>
+<div class="form-group">
+                Guests:
+                    <ul>
+                        @foreach (RSVP rsvp in @Model.RSVP){
+                            <li>@rsvp.User.fname @rsvp.User.lname</li>
+                        }
+                    </ul>
+</div>

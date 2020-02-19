@@ -1,0 +1,29 @@
+@model Wedding
+<a asp-action="Logout" asp-controller="Home">Logout</a> |
+<a asp-action="success" asp-controller="Home">Home</a>
+
+
+<h1>Plan Your Wedding</h1>
+<form asp-action="CreateWedding" asp-controller="Home" method="post">
+<div class="form-group">
+<span asp-validation-for="bride" class="text-danger"></span>
+<label asp-for="bride"></label>
+<input asp-for="bride">
+</div>
+<div class="form-group">
+<span asp-validation-for="groom" class="text-danger"></span>
+<label asp-for="groom"></label>
+<input asp-for="groom">
+</div>
+<div class="form-group">
+<span asp-validation-for="date"></span>
+<label asp-for="date"></label>
+<input asp-for="date">
+</div>
+<div class="form-group">
+<span asp-validation-for="address"></span>
+<label asp-for="address"></label>
+<input asp-for="address">
+</div>
+<button>Create</button>
+</form>
